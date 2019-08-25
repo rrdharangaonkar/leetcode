@@ -1,13 +1,14 @@
 package algorithms;
 
+import java.util.Arrays;
+
 public class LeetCode1108 {
 	
 	private static final String DOT = ".";
 	private static final String DEFANGED_DOT = "[.]";
 	
 	public String defangIpAddress(String ipaddress) {
-		if(ipaddress == null || ipaddress.isEmpty()
-				|| !isValidInet4Address(ipaddress)) {
+		if(!isValidInet4AddressUsingStreams(ipaddress)) {
 			throw new IllegalArgumentException("Invalid ip address");
 		}
 		
@@ -18,7 +19,8 @@ public class LeetCode1108 {
 		
 		boolean result = true;
 		
-		if(!ipaddress.contains(DOT)) {
+		if(ipaddress == null || ipaddress.isEmpty()
+				|| !ipaddress.contains(DOT)) {
 			return false;
 		}
 		
@@ -35,4 +37,23 @@ public class LeetCode1108 {
 		}
 		return result;
 	}
+	
+	private boolean isValidInet4AddressUsingStreams(String ipaddress) {
+		boolean result = true;
+		
+		if(ipaddress == null || ipaddress.isEmpty()
+				|| !ipaddress.contains(DOT)) {
+			return false;
+		}
+		
+		String[] elements = ipaddress.split("\\.");
+		result = Arrays.stream(elements)
+			.filter(s -> s.length() >= 1)
+			.map(Integer::parseInt)
+			.filter(i -> (i >= 0 && i <= 255))
+			.count() == 4;
+		
+		return result;
+	}
+	
 }
