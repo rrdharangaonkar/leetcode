@@ -14,15 +14,11 @@ public class MaxProductFinder {
 		
 		for(int i=0; i<arr.length; i++) {
 			
-			for(int j=i; j<arr.length; j++) {
+			for(int j=i+1; j<arr.length; j++) {
 				LOG.info("i=" + i + ", j=" + j);
 				
 				numComputations++;
-				
-				if(i == j) {
-					continue;
-				}
-								
+											
 				int product = arr[i] * arr[j];
 				if(product > maxProduct) {
 					maxProduct = product;

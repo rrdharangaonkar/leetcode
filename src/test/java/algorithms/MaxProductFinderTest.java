@@ -7,8 +7,8 @@ public class MaxProductFinderTest {
 	
 	@Test
 	public void testWithValidArray() {
-		int[] arr = {1, 5, 7, 3, 2};
-		assertThat(new MaxProductFinder().findMaxProduct(arr)).isEqualTo(35);
+		int[] arr = {1, 5, 8, 3, 2};
+		assertThat(new MaxProductFinder().findMaxProduct(arr)).isEqualTo(40);
 	}
 	
 	@Test
